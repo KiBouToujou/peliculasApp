@@ -1,0 +1,19 @@
+<ion-slides [options]="slideOpts">
+  <ion-slide *ngFor="let pelicula of peliculas">
+
+    <ion-card  mode="md" *ngIf="pelicula?.id" (click)="verDetalle(pelicula.id!.toString())">
+      <img
+        *ngIf="pelicula?.poster_path; else noPoster"
+        class="poster"
+        [src]="pelicula.poster_path || '' | imagen"
+        [alt]="pelicula.title || pelicula.original_title || 'Sin título'"
+      />
+
+
+      <ng-template #noPoster>
+        <img src="assets/notimage.avif" class="poster" alt="Sin imagen">
+      </ng-template>
+    </ion-card>
+
+  </ion-slide>
+</ion-slides>
